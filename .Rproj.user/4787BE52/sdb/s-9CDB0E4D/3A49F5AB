@@ -1,0 +1,17 @@
+{
+    "contents" : "shinyUI(pageWithSidebar(\n  headerPanel(\"Hello Baseball Fans!\"),\n  sidebarPanel(\n    h3('Select a year to see the top paid players for a particular year:'),\n    numericInput('pickyear', 'Pick a year between 1985-2013', 2013, min=1985, max=2013, step=1),\n    submitButton('Get Annual Salaries!'),\n    p(\"The data will be presented in an interactive table that you can sort and filter.\"),\n    h3(''),\n    h3(''),\n    p(\"Baseball salary data available from:\n       Michael Friendly (2014). Lahman: Sean Lahman's Baseball Database.\n       R package version 3.0-1.\"),\n    p (\"http://CRAN.R-project.org/package=Lahman\")\n  ),\n  mainPanel(\n    plotOutput('plot1', height=200),\n    dataTableOutput('table1')\n  )\n))\n",
+    "created" : 1415837160088.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "236096086",
+    "id" : "3A49F5AB",
+    "lastKnownWriteTime" : 1416533758,
+    "path" : "~/Coursera/ShinyApp/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

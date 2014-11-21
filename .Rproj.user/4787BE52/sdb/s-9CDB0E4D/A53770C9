@@ -1,0 +1,17 @@
+{
+    "contents" : "library(shiny)\nlibrary(Lahman)\nlibrary(xtable)\ndata(Salaries)\ndata(Master)\ngive10<-function(pickyear){\n  mydat<-Salaries[Salaries$yearID==pickyear,]\n  topten<-mydat[order(mydat$salary, decreasing=T),]\n  withnames<-merge(topten, Master, by=c('playerID'))\n  withnames$salmil<-paste(\"$\", format(round(withnames$salary/10^6,3), nsmall=3), ' million USD', sep=\"\")\n  myout<-withnames[order(withnames$salary, decreasing=T),c('yearID','nameFirst', 'nameLast','teamID', 'salmil')]\n  names(myout)<-c('Year','First Name','Last Name', 'Team', 'Salary')\n  myout\n}\n\nsal.sum<-aggregate(salary~yearID, data=Salaries, max)\nsal.sum$salary<-sal.sum$salary/10^6\n\nshinyServer(\n  function(input, output) {\n    output$plot1<-renderPlot({\n      par(mar=c(5,5,2,0))\n      plot(salary~yearID, sal.sum, type='l', main='Annual maximum MLB player salary',\n           xlab=\"Year\", ylab=\"Salary (million USD)\", lwd=3)})\n    output$table1<-renderDataTable({give10(input$pickyear)})\n  }\n)\n",
+    "created" : 1415837163465.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1149295822",
+    "id" : "A53770C9",
+    "lastKnownWriteTime" : 1416364688,
+    "path" : "~/Coursera/ShinyApp/server.r",
+    "project_path" : "server.r",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
